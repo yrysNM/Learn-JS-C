@@ -98,10 +98,28 @@ node1.next.next.next = node4;
 node1.next.next.next.next = node5;
 
 let list = new LinkedList(node1);
-
+console.log(list );
 console.log(list.head.next.data);		// => 5 
 console.log(convertArr(node1));			// => [ 2, 5, 6, 3, 8 ]
 
 console.log(convertArr(node1).sort()); // => [ 2, 3, 5, 6, 8 ]
 
 
+/* function linkedList(arr){
+  return arr.reduceRight((next, value) => ({value, next}), null);
+}
+
+l = [3, 1, 2, 3, 4, 5];
+
+console.log(linkedList(l));
+
+
+let list = new ListNode(arr[0]);
+  
+  let selectedNode = list;
+  for(let i = 1; i < arr.length; i++){
+    selectedNode.next = new ListNode(arr[i]);
+    selectedNode = selectedNode.next
+  } 
+
+  return list */

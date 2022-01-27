@@ -15,4 +15,24 @@ function sameOrnot(arr) {
 
 }
 
+function sameorNotLoop(arr) {
+	let bol = false;
+	for(let  i = 0;i < arr.length; i++) {
+		for(let j = i + 1; j < arr.length; j++){
+		//	console.log(arr[i], arr[j]);
+
+			if(arr[i] == arr[j]) 
+			{
+				bol = true;
+				break;
+			}
+
+		}
+	}
+
+	console.log(bol);
+}
+
 console.log(sameOrnot([33,  33, 343]));	    // => true if have same number
+
+sameorNotLoop([32, 22, 333, 33]);

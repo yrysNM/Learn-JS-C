@@ -36,7 +36,7 @@ function  findSumBetter(arr, weight){
 
 	for(let i = 0, arrLength = arr.length; i < arrLength;i++){
 		let currentElement = arr[i];
-		let = difference = weight - currentElement;
+		let difference = weight - currentElement;
 
 		//Check the right one already exists
 			if(hashTable[currentElement] != undefined){
@@ -85,7 +85,7 @@ function  arraySlice(array, beginIndex, endIndex){
 
 
 
-//3) find themedina of two sorted arrays of the size
+//3) find the medina of two sorted arrays of the size
 function findMedian(arr) {
 	let num1 = 0;
 	let num2 = 0;

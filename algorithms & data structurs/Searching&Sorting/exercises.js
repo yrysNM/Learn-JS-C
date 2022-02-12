@@ -130,7 +130,7 @@ function fundTwoSumBetter(array, sum) {
 							// space somplexity: o(n)
 }
 
-//console.log(fundTwoSumBetter([1, 2, 3, 4, 5], 10));	//=> false
+console.log(fundTwoSumBetter([10,1,2,7,6,1,5], 8));	//=> false
 
 
 
@@ -289,4 +289,4 @@ function wordCount(sentence) {
 }
 
 let obj= wordCount("practice makes perfect. get perfect by practice. just practice");
-console.log(obj);								=> { practice: 3, perfect: 2, makes: 1, get: 1, by: 1, just: 1 }
+console.log(obj);								//=> { practice: 3, perfect: 2, makes: 1, get: 1, by: 1, just: 1 }

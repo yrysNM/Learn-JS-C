@@ -133,7 +133,7 @@ function medianofTwoSortedArray(arr1,arr2, pos) {
 	}
 
 	if(pos == 2) {
-		return (Math.max(arr1[0], arr2[0]) + Math.min(arr1[1], arr[2])) / 2;
+		return (Math.max(arr1[0], arr2[0]) + Math.min(arr1[1], arr2[1])) / 2;
 	}
 
 	let median1 = medianOfArray(arr1);
@@ -157,9 +157,9 @@ function medianofTwoSortedArray(arr1,arr2, pos) {
 		//o(log(n))
 }
 
-//console.log(medianofTwoSortedArray([1,2, 3], [4, 5, 6], 3));			// => 3.5
-//console.log(medianofTwoSortedArray([11, 23, 24], [32, 33, 450], 3));	// => 28
-//console.log(medianofTwoSortedArray([1,2, 3], [2,3, 5], 3));			// => 2.5
+console.log(medianofTwoSortedArray([1,2, 3], [4, 5, 6], 3));			// => 3.5
+console.log(medianofTwoSortedArray([11, 23, 24], [32, 33, 450], 3));	// => 28
+console.log(medianofTwoSortedArray([1,3, 5, 1], [3, 4, 5, 12], 4));			// => 2.5
 
 
 

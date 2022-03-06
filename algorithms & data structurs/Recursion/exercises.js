@@ -30,10 +30,10 @@ function base10ToString(n) {
 								//Space Complexity: O(log2(n))
 }
 
-//console.log(base10ToString((33)));
-//convertBinary(33);
-//arr.reverse();
-//console.log(arr.join(""));
+console.log(base10ToString((33)));
+convertBinary(33);
+arr.reverse();
+console.log(arr.join(""));
 
 
 
@@ -140,8 +140,8 @@ function isPolindromeRecursive(word, firLetter, endLetter) {
 }
 
 
-console.log(isPolindromeHelper('aibohphobia'));		//=> false
-console.log(isPolindromeHelper("deifies"));		// => TRUE
+// console.log(isPolindromeHelper('aibohphobia'));		//=> false
+// console.log(isPolindromeHelper("deifies"));		// => TRUE
 
 /* Time Complexity: O(n)
 	Space Complexity: O(n */

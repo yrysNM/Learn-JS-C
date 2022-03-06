@@ -42,7 +42,7 @@ function spiralPrint(M) {
    									// => space complexity: o(1)
 }
 
-//spiralPrint(M);						// => print like spirals
+spiralPrint(M);						// => print like spirals
 
 
 
@@ -245,9 +245,9 @@ let matrix = [
 	[1, 1, 1]
    
 ]
-
-rotateMatrix90Left(matrix);
-
-matrix.forEach(elem => {
-	console.log(elem.join(""));
-});
+// 
+// rotateMatrix90Left(matrix);
+// 
+// matrix.forEach(elem => {
+// 	console.log(elem.join(""));
+// });

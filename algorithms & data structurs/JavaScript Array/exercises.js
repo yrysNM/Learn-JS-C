@@ -157,7 +157,7 @@ function medianofTwoSortedArray(arr1,arr2, pos) {
 		//o(log(n))
 }
 
-console.log(medianofTwoSortedArray([1,2, 3], [4, 5, 6], 3));			// => 3.5
+console.log(medianofTwoSortedArray([1,2, 5], [3, 4, 6], 3));			// => 3.5
 console.log(medianofTwoSortedArray([11, 23, 24], [32, 33, 450], 3));	// => 28
 console.log(medianofTwoSortedArray([1,3, 5, 1], [3, 4, 5, 12], 4));			// => 2.5
 

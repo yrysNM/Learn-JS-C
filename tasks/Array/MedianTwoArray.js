@@ -3,21 +3,28 @@
  * @param {number[]} nums2
  * @return {number}
  */
-
-
-// error to same array
 var findMedianSortedArrays = function(nums1, nums2) {
-	let pos1 = nums1.length; 
+    let pos1 = nums1.length; 
     let pos2 = nums2.length;
-    let maxLength = Math.min(pos1, pos2);
- 	if(pos1 != pos2) {
- 		let md1 =  findMedianTwoArray(nums1, nums2, pos1);
- 		let md2 = findMedianTwoArray(nums1, nums2, pos2);
- 		let md3= findMedianTwoArray(nums1, nums2, 2.6)
- 		console.log(md1, md2);
- 	}
- 	return findMedianTwoArray(nums1, nums2, pos1);
+       let maxLength = Math.min(pos1, pos2);
+    if(pos1 != pos2) {
+        return binaryCancat(nums1, nums2);
+    }
+    return binaryCancat(nums1, nums2, pos1);
 };
+
+
+const binaryCancat = (arr1, arr2) => {
+    let arr = arr1.concat(arr2);
+    arr.sort((a, b) => a - b);
+    let length = arr.length;
+    
+    if(length % 2 == 1) {
+        return arr[Math.floor(length / 2)];
+    }else {
+        return (arr[length / 2] + arr[(length / 2) - 1]) / 2;
+    }
+}
 
 
 const findMedianTwoArray = (arr1, arr2, pos) => {
@@ -35,6 +42,7 @@ const findMedianTwoArray = (arr1, arr2, pos) => {
         return (arr1[0] + arr2[0]) / 2;
     }
     
+    console.log(arr1, arr2);
     if(pos == 2) {
         return (Math.max(arr1[0], arr2[0]) + Math.min(arr1[1], arr2[1])) / 2; 
     }
@@ -55,6 +63,7 @@ const findMedianTwoArray = (arr1, arr2, pos) => {
     }else {
         return findMedianTwoArray(arr2.slice(offSetMinus), arr1.slice(offSetMinus), offSetPlus);
     }
+    
 };
 
 function medianOfArray(array) {
@@ -66,6 +75,8 @@ function medianOfArray(array) {
         return (array[length / 2] + array[length / 2 - 1]) / 2;
     }
 }
+
+
 
 
 let arr1 = [1,  3, 12, 13, 23];

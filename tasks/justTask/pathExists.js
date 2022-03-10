@@ -112,7 +112,7 @@ var validPath = function(n, edges, source, destination) {
 		for(let j= 0;j < edges[0].length; j++){
 			if(edges[i][j + 1]) {
 
-				
+				console.log(edges[i][j], edges[i][j + 1]);
 				digraph1.addEdge(edges[i][j], edges[i][j + 1], 1);
 			}
 		}

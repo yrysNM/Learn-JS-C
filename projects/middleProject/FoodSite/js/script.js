@@ -396,10 +396,10 @@ window.addEventListener("DOMContentLoaded", () => {				// loaded dom first
 	}
 
 	next.addEventListener("click", () => {
-		if(offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+		if(offset == getWidthCurrent(width) * (slides.length - 1)) {
 			offset = 0;
 		}else {
-			offset += +width.slice(0, width.length - 2);
+			offset += getWidthCurrent(width);
 		}
 
 
@@ -422,10 +422,10 @@ window.addEventListener("DOMContentLoaded", () => {				// loaded dom first
 
 	prev.addEventListener("click", () => {
 		if(offset == 0) {
-			offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+			offset = getWidthCurrent(width) * (slides.length - 1);
 
 		}else {
-			offset -= +width.slice(0, width.length - 2);
+			offset -= getWidthCurrent(width);
 		}
 
 
@@ -451,7 +451,7 @@ window.addEventListener("DOMContentLoaded", () => {				// loaded dom first
 			const slideTo = e.target.getAttribute('data-slide-to');
 
 			slideIndex = Number(slideTo);
-			offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+			offset = getWidthCurrent(width) * (slideTo - 1);
 
 			slidesField.style.transform = `translateX(-${offset}px)`;
 
@@ -460,6 +460,10 @@ window.addEventListener("DOMContentLoaded", () => {				// loaded dom first
 			
 		});
 	});
+
+	function getWidthCurrent(width){
+		return +width.replace(/\D/g, "");
+	}
 
 	function changeViewDots(dots, slideIndex) {
 		dots.forEach(dot => dot.style.opacity = ".5");

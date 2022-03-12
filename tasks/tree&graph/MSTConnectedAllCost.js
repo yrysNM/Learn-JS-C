@@ -26,7 +26,6 @@ class Graph{
 
 		}
 
-
 		let V = [],
 		count = 0;
 		for(let vertex  in this.edges) {
@@ -35,19 +34,11 @@ class Graph{
 		}
 		graph = Matrix(count, count);
 		
-		// for(let i = 1; i <= count; i++) {
-		// 	for (let j = 1; j <= count; j++) {
-		// 		graph[i - 1][j - 1] = this.edges[V[i]][V[j]];
-		// 	}
-		// V[]
-
-
 
 		for(let i = 1; i <= count; i++) {
 			for(let j = 1; j <= count; j++) {
-				console.log(V[i - 1], V [j - 1], i, j);
-				//console.log(this.edges[V[i]][j], i, j);
 				graph[i - 1][j - 1] = this.edges[V[i - 1]][V[j - 1]];
+
 			}
 		}
 
@@ -66,12 +57,13 @@ class Graph{
 		let min = Infinity,
 			min_index = -1;
 
-		let V; 
+		let V, count = 0; 
 		for(let vertex in this.edges) {
 			V = vertex;
+			count++;
 		}
 
-		for(let v= 0; v < V; v++) {
+		for(let v= 0; v < count; v++) {
 			if(mstSet[v] == false && key[v] < min) {
 				min = key[v];
 				min_index = v;
@@ -93,7 +85,7 @@ class Graph{
 
 	printMST(parent, graph) {
 		let sumCost = 0;
-		//console.log("Edge \tWeight");
+
 		for(let i = 1; i < this.getVertex(graph); i++) {
 			//console.log(parent[i] + " - " + i + "\t" + graph[i][parent[i]]);
 			sumCost += graph[i][parent[i]];
@@ -123,7 +115,7 @@ class Graph{
 		parent[0] = -1;
 
 		for(let count = 0; count < V - 1; count++) {
-			let u= this.minKey(key, mstSet);
+			let u = this.minKey(key, mstSet);
 
 			mstSet[u] = true;
 
@@ -167,61 +159,29 @@ var minCostConnectPoints = function(points) {
     let edges = [];
     let arrEdge = [];
 
+    for(let  i = 0; i < points.length; i++) {
+
+    	g.addVertex(i);
+    }
+
+
     for(let i = 0; i < points.length; i++) {
     	for(let j = i + 1; j < points.length; j++) {
     		//if(points[i][1] && points[j][1]) {
 
-    			let weights = 
+    		let weights = 
     				Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
 
-    			//if(points[i][1] && points[j][1]) {
-    			//	if(points[i][1] != points[j][1]) {
-
-		    			 maxI = Math.max(points[i][0], points[i][1]);
-		    			 maxJ = Math.max(points[j][0], points[j][1]);
-		    			 edges.push([[maxI, maxJ], weights]);
-	    				for(let i = 0; i <= v; i++) {
-	    					if(maxI == maxJ) {
-	    						maxJ = Math.min(points[j][0], points[j][1]);
-	    						
-	    						g.addVertex(maxI);
-	    						g.addVertex(maxJ); 	
-	    					}
-	    					g.addVertex(maxI);
-	    					g.addVertex(maxJ); 
-
-	    				console.log(maxI, maxJ);
-	    				}
-    				//}
-
-    		//	}
-    			
-	    				//g.addEdges(maxJ, maxI, weights);
-				//console.log(edges, weights);
-
+			
+			//console.log(i, j, weights);
+			g.addEdge(i, j, weights);
     	}
     }
-   let count = 1;
-	while(edges.length) {
-		let temp = edges.shift(); 
 
-		let tuple = temp[0]; 
-		let weight = temp[1];
-	
-		g.addEdge(tuple[0] , tuple[1], weight);
-		/* for(let i = 0;i< tuple.length; i++) {
-			console.log(weight);
-		} */
-	}
-
-
-    //let graph = g.convert(); 
-	console.log(g);
    let graph = g.convert();
-   console.log(graph);
-
+  console.log(graph);
    console.log(g.primMST(graph));
 };
 
-let points = [[0,0],[1,1],[1,0],[-1,1]];
+let points = [[-14,-14],[-18,5],[18,-10],[18,18],[10,-2]];
 minCostConnectPoints(points);

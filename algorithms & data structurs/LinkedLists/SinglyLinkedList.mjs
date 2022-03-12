@@ -96,5 +96,5 @@ sll1.insert(20);						// => 20 ->  12 -> 1 -> null
 //console.log(sll1.head);
 sll1.deletedAtHead();					// => 12 -> 1 -> null
 
-//console.log(sll1);
+console.log(sll1);
 

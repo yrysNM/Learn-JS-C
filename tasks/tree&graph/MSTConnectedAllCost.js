@@ -34,11 +34,17 @@ class Graph{
 		}
 		graph = Matrix(count, count);
 		
+		// for(let i = 1; i <= count; i++) {
+		// 	for (let j = 1; j <= count; j++) {
+		// 		graph[i - 1][j - 1] = this.edges[V[i]][V[j]];
+		// 	}
+		// V[]
+
+
 
 		for(let i = 1; i <= count; i++) {
 			for(let j = 1; j <= count; j++) {
 				graph[i - 1][j - 1] = this.edges[V[i - 1]][V[j - 1]];
-
 			}
 		}
 
@@ -85,7 +91,7 @@ class Graph{
 
 	printMST(parent, graph) {
 		let sumCost = 0;
-
+		//console.log("Edge \tWeight");
 		for(let i = 1; i < this.getVertex(graph); i++) {
 			//console.log(parent[i] + " - " + i + "\t" + graph[i][parent[i]]);
 			sumCost += graph[i][parent[i]];
@@ -115,7 +121,7 @@ class Graph{
 		parent[0] = -1;
 
 		for(let count = 0; count < V - 1; count++) {
-			let u = this.minKey(key, mstSet);
+			let u= this.minKey(key, mstSet);
 
 			mstSet[u] = true;
 

@@ -17,26 +17,23 @@ class DirectedGraph {
 
 	traverseBFS(vertex, fn) {
 		let queue = []; 
-		let visited ={};
+		let visited = {}; 
 
 		queue.push(vertex);
 
 		while(queue.length) {
 			vertex = queue.shift();
+
 			if(!visited[vertex]) {
-				visited[vertex] = true;
-				fn(vertex);
+				visited[vertex] = true; 
+				fn(vertex); 
 
-				for(let adjent in this.edges[vertex]) {
-				
-
-					queue.push(adjent);
-					//vertex = adjent;
-
+				for(let adjacentVertex in this.edges[vertex]) {
+					queue.push(adjacentVertex);
 				}
 			}
-
 		}
+
 	}
 }
 

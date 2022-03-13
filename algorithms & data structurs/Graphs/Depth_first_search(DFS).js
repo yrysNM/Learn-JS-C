@@ -18,24 +18,21 @@ class DirectedGraph {
 
 	traverseDFS(vertex, fn) {
 		let visited = {};
-		
-		this._traverseDFSHelp(vertex, visited,  fn);
+		//Time Complexity: O(V + E
+		this._traverseDFS(vertex, visited, fn);
 	}
 
-	_traverseDFSHelp(vertex, visited, fn) {
+	_traverseDFS(vertex, visited, fn) {
 		visited[vertex] = true; 
+		fn(vertex);
 
-		//if(!visited[vertex]) {
-			fn(vertex);
-			for(let adject in this.edges[vertex]) {
-				if(!visited[adject]) {
-
-					this._traverseDFSHelp(adject, visited, fn);
-				}
+		for(let adjacentVertex in this.edges[vertex]) {
+			if(!visited[adjacentVertex]) {
+				this._traverseDFS(adjacentVertex, visited, fn);
 			}
-		//}
+		}
 	}
-}
+ }
 
 let digraph2 = new DirectedGraph(); 
 

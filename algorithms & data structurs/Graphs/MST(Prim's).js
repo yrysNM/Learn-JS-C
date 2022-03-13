@@ -167,6 +167,8 @@ g.addEdge("3", "1", 3);
 console.log(g);
 let graph = g.convert();
 console.log(graph);
+
+
 g.primMST(graph);
 
 // console.log(g);

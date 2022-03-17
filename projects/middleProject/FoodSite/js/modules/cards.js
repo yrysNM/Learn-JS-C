@@ -1,3 +1,5 @@
+import {getResource} from "../services/services";
+
 function cards(){
 
 	// class for card it means created card with class  
@@ -47,17 +49,8 @@ function cards(){
 		}
 	}
 
-	const getResouse = async(url, data) => {
-		const res = await fetch(url);
 
-		if(!res.ok) {
-			throw new Error(`Could nor fetch ${url}, status: ${res.status}`);
-		}
-
-		return await res.json();
-	};
-
-	getResouse("http://localhost:3000/menu").then(data => {
+	getResource("http://localhost:3000/menu").then(data => {
 		console.log(data);
 		data.forEach(({img, altimg, title, descr, price}) => {
 			new  MenuCard(img, altimg, title, descr, price, '.menu .container').render();
@@ -65,4 +58,4 @@ function cards(){
 	});
 }
 
-module.exports = cards;
+export default cards; 

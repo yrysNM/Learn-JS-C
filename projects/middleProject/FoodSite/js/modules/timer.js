@@ -1,8 +1,6 @@
-function timer() {
+function timer(timerID, deadline) {
 
 	//Timer method or feedback report
-	
-	const deadline = "2022-12-31";
 
 	let getTimeRemaining = (endtime) => {
 		const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -53,8 +51,8 @@ function timer() {
 		}
 	};
 
-	setClock('.timer', deadline);
+	setClock(timerID, deadline);
 
 }
 
-module.exports = timer;
+export default timer;

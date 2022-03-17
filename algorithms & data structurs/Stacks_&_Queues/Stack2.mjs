@@ -59,4 +59,6 @@ let stack1= new Stack();
 stack1.push(1);
 stack1.push(2);
 stack1.push(3);
+
+console.log(stack1.peek());
 //console.log(stackAccessNthTopNode(stack1, 3));

@@ -18,13 +18,13 @@ var isValid = function(str) {
 			st.push("}");
 		}else {
 			
+		
 			if(st.length  == 0 || st.pop() != ch) {
 				return false;
 			}
 		}
 
 	}
-
 	return st.length == 0; 
 };
 

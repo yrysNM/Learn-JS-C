@@ -171,6 +171,8 @@ var validateStackSequences = function(pushed, popped) {
     return false; */
 };
 
+
+//tests
 let pushed1 = [1,2,3,4,5];
 let popped1 = [4,5,3,2,1];
 

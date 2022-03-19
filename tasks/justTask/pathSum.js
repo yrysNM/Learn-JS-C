@@ -17,7 +17,11 @@ var hasPathSum = function(root, targetSum) {
 			let temp = queue.shift();
 			let curSum = queueSum.shift(0); 
 
-			if(!temp.left && !temp.right && curSum == 0) return true;
+			if(!temp.left && !temp.right && curSum == 0) 
+			{
+			
+				return true;
+			}
 
 			if(temp.left) {
 				queue.push(temp.left);

@@ -11,6 +11,10 @@ function quickSortHelper(items, left, right) {
 		if(left < index - 1) {
 			quickSortHelper(items, left, index  - 1);
 		}
+
+		if(index < right){
+			quickSortHelper(items, index, right);
+		}
 	}
 	return items;
 }

@@ -49,3 +49,5 @@ digraph2.addEdge(4, 5);
 digraph2.traverseDFS(2, (vertex) => {
 	console.log(vertex);
 });
+
+

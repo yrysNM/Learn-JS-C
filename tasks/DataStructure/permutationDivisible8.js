@@ -51,7 +51,7 @@ function checkDivisibility(arr) {
         hashMap[arr[i]] = findPermutations(arr[i]);
        // allPermutation = findPermutations(arr[i]);
     }
-
+   // console.log(hashMap);
     let res = {}; 
     let ans = {};
  //   let arr = [];

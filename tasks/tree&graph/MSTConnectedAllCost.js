@@ -80,13 +80,8 @@ class Graph{
 	}
 
 	getVertex(graph) {
-		let V = graph.length;
-		return V;
-// 		for(let vertex in  this.edges) {
-// 			V = vertex;
-// 		}
-// 
-// 		return V;
+		let v = graph.length;
+		return v;
 	}
 
 	printMST(parent, graph) {
@@ -151,7 +146,7 @@ function Matrix(rows, columns) {
 }
 
 /**
- * @param {number[][]} points
+ * @param {number[][]} points  
  * @return {number}
  */
 var minCostConnectPoints = function(points) {

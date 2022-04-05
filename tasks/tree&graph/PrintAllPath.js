@@ -1,3 +1,29 @@
+'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+
+
 class Graph {
 	constructor() {
 		this.edges= {};
@@ -83,12 +109,18 @@ class Graph {
 
 		pathList.push(source);
 
-		this.printAllPathsUtil(source,dis, isVisited, pathList);
+		return this.printAllPathsUtil(source,dis, isVisited, pathList);
+
 	}
 
-	printAllPathsUtil(s, d, isVisited, localPathList) {
+	printAllPathsUtil(s, d, isVisited, localPathList, count = 0) {
+		let ans = [];
+		//let count= 0;
 		if(s == (d)) {
-			console.log(localPathList);
+			ans.push(count);
+			res(ans);
+
+			console.log(localPathList, new_arr);
 			return;
 		}
 
@@ -99,9 +131,13 @@ class Graph {
 
 			if(!isVisited[this.adjList[s][i]]) {
 			
-				localPathList.push(this.adjList[s][i]);
-				this.printAllPathsUtil(this.adjList[s][i], d, isVisited, localPathList);
 			
+				localPathList.push(this.adjList[s][i]);
+				count++;
+				this.printAllPathsUtil(this.adjList[s][i], d, isVisited, localPathList, count);
+			
+				
+				
 				localPathList.splice(localPathList.indexOf(this.adjList[s][i]), 1);
 
 			}
@@ -112,20 +148,71 @@ class Graph {
 	}
 }
 
+let resultPath = 0;
 
-let g = new Graph();
-
-g.addVertexList(4);
-
-for(let i =0;  i < 4;  i++) {
-	g.addVertex(i);
+function res(ar) {
+	resultPath = ar[ar.length - 1];
 }
 
-g.addEdge(0, 1);
-g.addEdge(0, 2); 
-g.addEdge(0, 3);
-g.addEdge(2, 0); 
-g.addEdge(2, 1);
-g.addEdge(1, 3);
-console.log(g.adjList);
-console.log(g.printAllPaths(2, 3));
+
+function path(n, e, source, dis, adjE) {
+	let g = new Graph();
+
+	g.addVertexList(n);
+
+	let test = ""; 
+	for(let i = 0; i< adjE.length;  i++ ) {
+		for(let j = 0; j < adjE[0].length; j++) {
+			test = adjE[i][j];
+			g.addEdge(test[0], test[test.length - 1]);
+		}
+	}
+
+	g.printAllPaths(source, dis);
+
+	return resultPath;
+}
+
+
+
+function main() {
+	const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+	let n = parseInt(readLine());
+	let e = parseInt(readLine());
+	let source = parseInt(readLine());
+	let dis = parseInt(readLine());
+	let adjE = [];
+	for(let i = 0; i < n; i++) {
+	
+		adjE.push([readLine()]);
+	
+	}
+
+	const result= path(n, e, source, dis, adjE);
+
+	ws.write(result + "\n");
+
+	ws.end();
+
+}
+
+
+
+
+
+// let g = new Graph();
+// 
+// g.addVertexList(4);
+// 
+// for(let i =0;  i < 4;  i++) {
+// 	g.addVertex(i);
+// }
+// 
+// g.addEdge(0, 1);
+// g.addEdge(0, 2); 
+// g.addEdge(0, 3);
+// g.addEdge(2, 0); 
+// g.addEdge(2, 1);
+// g.addEdge(1, 3);
+// // console.log(g.adjList);
+// console.log(g.printAllPaths(2, 3));

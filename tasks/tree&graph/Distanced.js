@@ -1,6 +1,6 @@
 'use strict';
 
-/* const fs = require('fs');
+const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -20,7 +20,7 @@ process.stdin.on('end', function() {
 
 function readLine() {
     return inputString[currentLine++];
-} */
+}
 
 
 /*
@@ -137,7 +137,7 @@ function distance() {
 }
 console.log(distance());
 
-/* function main() {
+function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
     var n = parseInt(readLine());
     let numV = parseInt(readLine());
@@ -160,4 +160,4 @@ console.log(distance());
     ws.write(result + '\n');
 
     ws.end();
-} */
+}

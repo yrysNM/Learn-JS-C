@@ -40,7 +40,7 @@ function  findSumBetter(arr, weight){
 
 		//Check the right one already exists
 			if(hashTable[currentElement] != undefined){
-				return [i, hashTable[weight - currentElement]];
+				return [i, hashTable[currentElement]];
 			}else {
 				//store index
 				hashTable[difference] = i;
@@ -53,7 +53,7 @@ function  findSumBetter(arr, weight){
 
 }
 
-//console.log(findSumBetter([1, 2, 3, 4, 5], 9));
+console.log(findSumBetter([1, 2, 3, 4, 5], 9));
 
 
 

@@ -41,6 +41,17 @@ console.log(str.match(/\D/ig));			// =>
 console.log(str.match(/\w\d\w\d/i));
 
 
-
 // \D not numbers
 // \W not string 
+
+
+  let req = /\d\S/ig;
+  // let reqMinus = /-/g;
+  // let reqPlus = /+/g;
+  let string = "    -234243eigr";
+
+  let test = string.match(req).join("");
+  test.replace(/-/g, "-");
+  console.log(test);
+
+//console.log("".match(req));

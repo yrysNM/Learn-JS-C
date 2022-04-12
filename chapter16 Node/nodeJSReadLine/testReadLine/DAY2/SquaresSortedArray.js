@@ -16,7 +16,7 @@ const readLine = require("readline");
 
 
  	return sqarr.sort((a , b) => a - b);
-}
+};
 
 
 function main() {

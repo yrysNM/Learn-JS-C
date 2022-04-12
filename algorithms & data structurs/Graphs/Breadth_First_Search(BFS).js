@@ -14,7 +14,7 @@ class DirectedGraph {
 
 		this.edges[origVertex][destVertex] = weight;
 	}
-
+	
 	traverseBFS(vertex, fn) {
 		let queue = []; 
 		let visited = {}; 

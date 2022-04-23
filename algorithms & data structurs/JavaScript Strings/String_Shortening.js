@@ -37,5 +37,5 @@ function decodeId(id) {
 	return decoded;
 }
 
-console.log(encode(11231230));					// prints "VhU2"
-console.log(decodeId("VhU2"));
+console.log(encode(8.646625908249646e+77));					// prints "VhU2"
+console.log(decodeId("https://leetcode.com/problems/design-tinyurl"));

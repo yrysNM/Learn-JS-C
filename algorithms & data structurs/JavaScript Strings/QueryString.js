@@ -16,3 +16,13 @@ url.replace(new RegExp("([^?=&]+)(=([^&]*))?", "g"), function($0, $1, $2, $3) {
 console.log("ID: " + queryString['product_id']) 		// ID: 2140
 console.log("Name: " + queryString["product_name"]);	// Name: undefined 
 console.log("Category: " + queryString["category"]);	// Category: 4
+
+// function urlGenerator(domain) {
+// 	return function(url) {
+// 		return `https://${url}.${domain}`;
+// 	};
+// }
+// 
+// const comUrl = urlGenerator('ru'); 
+// 
+// console.log(comUrl('aniu'));

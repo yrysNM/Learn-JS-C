@@ -14,23 +14,44 @@
 // test3();
 
 
-function myFunc() {
-    return this.age; 
-}
+// function myFunc() {
+//     return this.age; 
+// }
+// 
+// 
+// const myFunc2 = () => this.age;
+// 
+// class MyClass {
+//     constructor(age) {
+//         this.age = age; 
+//     }
+// 
+//     getAge = myFunc();
+//     getAge2 = myFunc2();
+// }
+// 
+// 
+// let m = new MyClass(25);
+// console.log(m.getAge);
+// console.log(m.getAge2);
 
+function strSplitOnLength(data, your_desired_width) {
+    if(data.length <= 0)
+        return [];  // return an empty array
 
-const myFunc2 = () => this.age;
+    var splitData = data.split(/([\s\n\r]+)/);
+    var arr = [];
+    var cnt = 0;
+    for (var i = 0; i < splitData.length; ++i) {
+        if (!arr[cnt]) arr[cnt] = '';  //Instantiate array entry to empty string if null or undefined
 
-class MyClass {
-    constructor(age) {
-        this.age = age; 
+        if (your_desired_width < (splitData[i].length + arr[cnt].length))
+            cnt++;
+
+        arr[cnt] += splitData[i];
     }
 
-    getAge = myFunc();
-    getAge2 = myFunc2();
+    return arr;
 }
 
-
-let m = new MyClass(25);
-console.log(m.getAge);
-console.log(m.getAge2);
+console.log(strSplitOnLength('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada, est ut interdum ullamcorper, metus lorem interdum ipsum, vitae vulputate ante quam ut augue. Praesent sit amet varius lorem. Aliquam odio nunc, mattis in mollis vitae, laoreet non velit. Curabitur adipiscing, nisl tincidunt consequat ornare, ligula mauris sed.', 140));

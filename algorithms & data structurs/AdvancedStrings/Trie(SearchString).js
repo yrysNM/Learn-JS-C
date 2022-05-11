@@ -65,8 +65,10 @@ class Trie {
 		let ch = word. charAt(index);
 		let node = current.children[ch];
 
-		if(node == null) 
+		if(node == null) {
+
 			return false;
+		}
 
 		let shouldDeleteCurrentNode = this.deleteRecursively(node, word, index + 1);
 
@@ -90,7 +92,7 @@ trie.insert("sammie");
 trie.insert("simran");
 console.log(trie.search("simran")); 		// => true
 console.log(trie.search("fake"));			// => false
-console.log(trie.search("sim"));			// => false
+console.log(trie.search("sammie"));			// => false
 trie.delete("sammie");
 trie.delete("simran");
 console.log(trie.search('sammie'));			// => false

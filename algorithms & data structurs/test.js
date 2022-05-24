@@ -122,7 +122,7 @@ class Graph {
 			ans.push(count);
 			res(ans);
 
-			console.log(localPathList, new_arr);
+			console.log(localPathList);
 			return;
 		}
 
@@ -209,24 +209,24 @@ function main() {
 
 }
 
-main();
+// main();
 
 
 
-// let g = new Graph();
-// 
-// g.addVertexList(4);
-// 
-// for(let i =0;  i < 4;  i++) {
-// 	g.addVertex(i);
-// }
-// 
-// g.addEdge(0, 1);
-// g.addEdge(0, 2); 
-// g.addEdge(0, 3);
-// g.addEdge(2, 0); 
-// g.addEdge(2, 1);
-// g.addEdge(1, 3);
-// // console.log(g.adjList);
-// console.log(g.printAllPaths(2, 3));
+let g = new Graph();
+
+g.addVertexList(4);
+
+for(let i =0;  i < 4;  i++) {
+	g.addVertex(i);
+}
+
+g.addEdge(0, 1);
+g.addEdge(0, 2); 
+g.addEdge(0, 3);
+g.addEdge(2, 0); 
+g.addEdge(2, 1);
+g.addEdge(1, 3);
+// console.log(g.adjList);
+console.log(g.printAllPaths(2, 3));
 

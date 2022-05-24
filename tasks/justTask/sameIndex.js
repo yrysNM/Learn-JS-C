@@ -27,7 +27,7 @@ function someIndex(arr) {
         last = currentEl;
     }
 
-
+    console.log(indexArr2);
     for(let [k, v] of Object.entries(indexArr2)) {
         if(v.length >= 2) {
             for(let i =0; i< v.length; i++) {
@@ -44,4 +44,6 @@ function someIndex(arr) {
 }
 
 let arr = [7 , 3, 2, 1, 7, 3, 4, 1];
+let arr2 = new Array( 3,  8, 2, 5, 10, 2, 9 , 10, 3);
 console.log(someIndex(arr));
+console.log(someIndex(arr2));

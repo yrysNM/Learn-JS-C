@@ -1,7 +1,8 @@
 function findLowestCommonAncestor(root, value1, value2) {
 	function findLowestCommonAncestorHelper(root,value1, value2) {
-		if(!root) 
+		if(!root) {
 			return;
+		}
 
 		if(Math.max(value1, value2) < root.value) {
 			return findLowestCommonAncestorHelper(root.left, value1, value2);

@@ -2,7 +2,9 @@ function printKthLevels(root, k) {
 	let arrayKth = [];
 	let queue =[];
 
-	if(!root) return;
+	if(!root) { 
+		return; 
+	}
 
 	//Breath frist search for tree
 	queue.push([root, 0]);
@@ -73,7 +75,7 @@ let node3 = {
 			}
 		}
 	}
-}
+};
 
 printKthLevels(node1, 1);		// 1
 printKthLevels(node1, 2);		// [0, 2]

@@ -43,7 +43,7 @@ function anagram(str1, str2) {
 			return false;
 		}
 	}
-	console.log(aCharobj, bCharObj)
+	console.log(aCharobj, bCharObj);
 
 	return true;
 }

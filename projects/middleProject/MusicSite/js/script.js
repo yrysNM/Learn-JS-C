@@ -1,3 +1,6 @@
+/**
+ * @param music_visualization  
+ */
 
 const container = document.getElementById("container");
 const canvas = document.getElementById("canvas1");
@@ -18,7 +21,7 @@ container.addEventListener("click", () => {
 	analyser = audioCtx.createAnalyser();
 	audioSource.connect(analyser);
 	analyser.connect(audioCtx.destination);
-	analyser.fftSize = 128;
+	analyser.fftSize = 256;
 	const bufferLength = analyser.frequencyBinCount;
 
 	const dataArray= new Uint8Array(bufferLength);
@@ -31,18 +34,9 @@ container.addEventListener("click", () => {
  		x = 0;
  		ctx.clearRect(0, 0, canvas.width, canvas.height);
  		analyser.getByteFrequencyData(dataArray);
- 		
- 		for(let i =0; i < bufferLength; i++) {
- 			barHeight = dataArray[i];
 
- 			const red = i * barHeight/20; 
-			const green = i * 4; 
-			const blue = barHeight/2; 
-
- 			ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
- 			ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
- 			x += barWidth;
- 		}
+	//	drawVisualiser3(bufferLength, x, barWidth, barHeight, dataArray);
+		drawVisualiser1(bufferLength, x, barWidth, barHeight, dataArray);
 
  		requestAnimationFrame(animate);
 
@@ -65,7 +59,7 @@ file.addEventListener("change", function() {
 	analyser = audioCtx.createAnalyser();
 	audioSource.connect(analyser);
 	analyser.connect(audioCtx.destination);
-	analyser.fftSize = 128;
+	analyser.fftSize = 256;
 	const bufferLength = analyser.frequencyBinCount;
 
 	const dataArray= new Uint8Array(bufferLength);
@@ -79,16 +73,8 @@ file.addEventListener("change", function() {
  		ctx.clearRect(0, 0, canvas.width, canvas.height);
  		analyser.getByteFrequencyData(dataArray);
  		
- 		for(let i =0; i < bufferLength; i++) {
- 			barHeight = dataArray[i];
-			const red = i * barHeight/20; 
-			const green = i * 4; 
-			const blue = barHeight/2; 
-
- 			ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
- 			ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
- 			x += barWidth;
- 		}
+		//drawVisualiser3(bufferLength, x, barWidth, barHeight, dataArray);
+		drawVisualiser1(bufferLength, x, barWidth, barHeight, dataArray);
 
  		requestAnimationFrame(animate);
 
@@ -99,3 +85,82 @@ file.addEventListener("change", function() {
 
 
 });
+
+
+/**
+ * 
+ * @param types_of_visualization
+ *  
+ */
+function drawVisualiser1(bufferLength, x, barWidth, barHeight, dataArray) {
+	for(let i =0; i < bufferLength; i++) {
+		barHeight = dataArray[i];
+		const red = i * barHeight/20; 
+		const green = i * 4; 
+		const blue = barHeight/2; 
+
+		ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+		ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+		x += barWidth;
+	}
+}
+
+function drawVisualiser2(bufferLength, x, barWidth, barHeight, dataArray) {
+	for(let i =0; i < bufferLength; i++) {
+		barHeight = dataArray[i];
+		ctx.save(); 
+		ctx.translate(canvas.width/2, canvas.height/2);
+		ctx.rotate(i + Math.PI * 2 / bufferLength); 
+		
+		const red = i + barHeight/20; 
+		const green = i * 4; 
+		const blue = barHeight/2; 
+		
+		ctx.fillStyle = `white`;
+		ctx.fillRect(0, 0, barWidth, 15); 
+		ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+
+		ctx.fillRect(0, 0, barWidth, barHeight);
+		x += barWidth;
+		ctx.restore();
+	}
+}
+
+function drawVisualiser3(bufferLength, x, barWidth, barHeight, dataArray) {
+	for(let i =0; i < bufferLength; i++) {
+		barHeight = dataArray[i] * 1.5; 
+		ctx.save();
+		ctx.translate(canvas.width/2, canvas.height/2); 
+		ctx.rotate(i * Math.PI * 8 / bufferLength); 
+
+		
+
+		const hue = i * 15; 
+		ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+		ctx.fillRect(0, 0, barWidth, barHeight);
+		x += barWidth;
+		ctx.restore();
+	}
+}
+
+function drawVisualiser4(bufferLength, x, barWidth, barHeight, dataArray) {
+	for(let i =0; i < bufferLength; i++) {
+		barHeight = dataArray[i] * 1.5 + 60; 
+		ctx.save();
+		ctx.translate(canvas.width/2, canvas.height/2); 
+		ctx.rotate(i + Math.PI * 2 / bufferLength); 
+
+		const red = i + barHeight/20; 
+		const green = i * 4; 
+		const blue = barHeight/2;
+
+		const hue = i * 10; 
+
+		ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+		ctx.fillRect(0, 0, barWidth, barHeight);
+		x += barWidth;
+		ctx.restore();
+	}
+}
+
+

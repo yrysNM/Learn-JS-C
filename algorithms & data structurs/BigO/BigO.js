@@ -34,7 +34,7 @@ function exampleLogoraithmic(n) {
 		console.log(i);
 	}
 }
-exampleLogoraithmic(70)
+exampleLogoraithmic(70);
 
 //If f(n) is O(g(n)), then kf(n) is O(g(n)), for any constant k > 0.
 function a(n) {

@@ -1,7 +1,7 @@
 const Queue = require("./Queue");
 const read = require("fs");
-const path = require("path");
 const readLine = require("readline");
+const path = require("path");
 
 const rl = readLine.createInterface({
     input: process.stdin,
@@ -58,15 +58,23 @@ class Dancer {
         }
     }
 
+    countMale = () => {
+        return this.#maleDancers.dataStore.length;
+    }
 
+    countFemale = () => {
+        return this.#femaleDancers.dataStore.length;
+    }
 }
 
 let dan = new Dancer();
 dan.getDancer();
 dan.dance(dan.getMale(), dan.getFemale());
-if (!dan.getFemale().empty()) {
+if (!dan.getFemale().empty() || dan.countFemale() > 0) {
     console.log(dan.getFemale().front().name + " is waiting to dance.");
+    console.log(`There are ${dan.countFemale()} female dancers waiting to dance.`);
 }
-if (!dan.getMale().empty()) {
+if (!dan.getMale().empty() || dan.countMale() > 0) {
     console.log(dan.getMale().front().name + " is waiting to dance.");
+    console.log(`There are ${dan.countMale()} male dancers waiting to dance.`);
 }

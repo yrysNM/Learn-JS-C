@@ -4,6 +4,14 @@ class Queue {
         this.dataStore = [];
     }
 
+    getDataStore = () => {
+        return this.dataStore;
+    }
+
+    setDataStore = (value) => {
+        this.dataStore = value;
+    }
+
     enqueue = (element) => {
         this.dataStore.push(element);
 
@@ -39,6 +47,7 @@ class Queue {
             return false;
         }
     }
+
 }
 
 

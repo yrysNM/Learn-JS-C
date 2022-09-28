@@ -12,13 +12,13 @@ class Patient {
     }
 
     dequeue = () => {
-        let priority = ed.getDataStore().code;
-        for (let i = 0; i < ed.getDataStore().length; i++) {
+        let priority = ed.getDataStore()[0].code;
+        for (let i = 1; i < ed.getDataStore().length; i++) {
             if (ed.getDataStore()[i].code < priority) {
                 priority = i;
             }
         }
-        return this.dataStore.splice(priority, 1);
+        return ed.getDataStore().splice(priority, 1);
     }
 
     toString = () => {
@@ -41,12 +41,18 @@ p = new Patient("Brown", 1);
 ed.enqueue(p);
 p = new Patient("Ingram", 1);
 ed.enqueue(p);
-console.log(ed.toString());
-let seen = ed.dequeue();
+console.log(p.toString());
+var seen = p.dequeue();
 console.log(seen);
-console.log("Patient being treated: " + seen.name);
+console.log("Patient being treated: " + seen[0].name);
 console.log("Patients waiting to be seen: ")
-console.log(ed.toString());
+console.log(p.toString());
 // another round
-// let seen = ed.dequeue();
-// console.log("Patinet being treated: " + seen[0].name);
+var seen = p.dequeue();
+console.log("Patinet being treated: " + seen[0].name);
+console.log("Patients waiting to seen: ");
+console.log(ed.toString());
+var seen = p.dequeue();
+console.log("Patient being treated: " + seen[0].name);
+console.log("Patient waiting to be seen: ");
+console.log(p.toString());

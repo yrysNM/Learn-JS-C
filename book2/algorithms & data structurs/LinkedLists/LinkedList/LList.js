@@ -33,10 +33,29 @@ class LList {
             currNode = currNode.next;
         }
     }
+
+    findPrevious = (item) => {
+        let currNode = this.head;
+        while (!(currNode.next == null) && (currNode.next.element != item)) {
+            currNode = currNode.next;
+        }
+        return currNode;
+    }
+
+    remove = (item) => {
+        let prevNode = this.findPrevious(item);
+        if (!(prevNode.next == null)) {
+            prevNode.next = prevNode.next.next;
+        }
+    }
 }
 
 let cities = new LList();
 cities.insert("Conway", "head");
 cities.insert("Russellville", "Conway");
+cities.insert("Carlisle", "Russellville");
 cities.insert("Alma", "Russellville");
+cities.display();
+console.log();
+cities.remove("Carlisle");
 cities.display();

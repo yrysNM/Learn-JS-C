@@ -1,18 +1,18 @@
 function Stack(array) {
 	this.array = [];
-	if(array) 
+	if (array)
 		this.array = array;
 }
 
-Stack.prototype.isEmpty = function() {
+Stack.prototype.isEmpty = function () {
 	return this.array.length == 0;
 };
 
-Stack.prototype.push = function(value) {
-	return this.array.push(value); 
+Stack.prototype.push = function (value) {
+	return this.array.push(value);
 };
 
-Stack.prototype.pop = function() {
+Stack.prototype.pop = function () {
 	return this.array.pop();
 };
 
@@ -20,13 +20,13 @@ Stack.prototype.pop = function() {
 function isParenthesisValid(validationString) {
 	let stack = new Stack();
 
-	for(let pos = 0; pos < validationString.length; pos++) {
+	for (let pos = 0; pos < validationString.length; pos++) {
 		let currentChar = validationString.charAt(pos);
-		
-		if(currentChar == "(") {
+
+		if (currentChar == "(" || currentChar == "{" || currentChar == "[") {
 			stack.push(currentChar);
-		}else if(currentChar == ")") {
-			if(stack.isEmpty()) {
+		} else if (currentChar == ")" || currentChar == "}" || currentChar == "]") {
+			if (stack.isEmpty()) {
 				return false;
 			}
 			stack.pop();
@@ -38,3 +38,4 @@ function isParenthesisValid(validationString) {
 
 console.log(isParenthesisValid("(((()"));		// => false
 console.log(isParenthesisValid("(())()"));		// => true
+console.log(isParenthesisValid("([{}])"));

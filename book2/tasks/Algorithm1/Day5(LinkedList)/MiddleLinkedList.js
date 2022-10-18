@@ -9,25 +9,25 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var middleNode = function(head) {
-    let left = head; 
+var middleNode = function (head) {
+    let left = head;
     let right = null;
     let fast = head;
-    
-    while(fast.next != null && fast.next.next != null) {
+
+    while (fast.next != null && fast.next.next != null) {
         right = left;
-        left = left.next; 
-        fast = fast.next.next;l 
+        left = left.next;
+        fast = fast.next.next;
     }
-    
+
     let mid = new ListNode();
-    if(fast.next == null) {
+    if (fast.next == null) {
         mid = left;
-    }else {
+    } else {
         right = left;
         mid = left.next;
     }
-    
-    right.next = null; 
+
+    // right.next = null; 
     return mid;
 };

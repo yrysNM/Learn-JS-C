@@ -12,11 +12,11 @@ interface Currencies {
 //   ukraine: string;
 // };
 
-type CustomCurrencies = CreateCustomCurr<Currencies>;
-
 type CreateCustomCurr<T> = {
-  readonly [K in keyof T]?: string;
+  readonly [K in keyof T as `custom${Capitalize<string & K>}`]?: string;
 };
+
+type CustomCurrencies = CreateCustomCurr<Currencies>;
 
 type Keys = "name" | "age" | "role";
 
@@ -29,3 +29,11 @@ const alex: UserM = {
   age: "25",
   role: "admin",
 };
+
+/**
+ * @TemplateLiteralTypes
+ */
+
+type MyAnimation = "fade" | "swipe";
+type Direaction = "in" | "out";
+type MyNewAnimation = `${MyAnimation}${Capitalize<Direaction>}`;

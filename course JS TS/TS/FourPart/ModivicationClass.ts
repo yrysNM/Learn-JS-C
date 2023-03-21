@@ -21,7 +21,7 @@ class Player {
     return this._login;
   }
 
-  set login(value: string) {
+  set login(value) {
     this._login = value;
   }
 

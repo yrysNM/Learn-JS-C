@@ -11,6 +11,16 @@ class MyCarM implements ICar {
   fuel: string = "50%";
   open: boolean = true;
   errors: any;
+  _weight: number = 1000;
+
+  get weight() {
+    return this._weight;
+  }
+
+  @log
+  set weight(num: number) {
+    this._weight = this._weight + num;
+  }
 
   @checkNumberOfSeats(4)
   freeSeats: number;
@@ -20,6 +30,25 @@ class MyCarM implements ICar {
     console.log(this.fuel);
     return this.open ? "open" : `close ${value}`;
   }
+}
+
+function log(
+  target: Object,
+  propertyKey: string | Symbol,
+  descriptor: PropertyDescriptor
+) {
+  const oldValue = descriptor.set;
+  const oldGetValue = descriptor.get;
+
+  descriptor.set = function (this: any, ...args: any) {
+    console.log(`Изменяем значение на ${[...args]}`);
+    return oldValue?.apply(this, args);
+  };
+
+  descriptor.get = function () {
+    console.log(`test`);
+    return oldGetValue?.apply(this);
+  };
 }
 
 function checkNumberOfSeats(limit: number) {
@@ -92,8 +121,11 @@ function changeAmountOfFueld(amount: number) {
 }
 
 const carM = new MyCarM();
-carM.freeSeats = 3;
-console.log(carM);
-console.log(carM.errors);
+carM.weight = 3;
+console.log(carM.weight);
+
+// carM.freeSeats = 3;
+// console.log(carM);
+// console.log(carM.errors);
 
 // console.log(carM.isOpen("checked"));

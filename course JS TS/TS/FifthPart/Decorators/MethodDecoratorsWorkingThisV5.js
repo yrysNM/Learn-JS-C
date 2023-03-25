@@ -19,17 +19,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 // @closeMCar
 var MyCarMV5 = /** @class */ (function () {
     function MyCarMV5() {
         this.fuel = "50%";
         this.open = true;
+        this._weight = 1000;
         this.freeSeats = 3;
     }
+    Object.defineProperty(MyCarMV5.prototype, "weight", {
+        get: function () {
+            return this._weight;
+        },
+        set: function (num) {
+            this._weight = this._weight + num;
+        },
+        enumerable: false,
+        configurable: true
+    });
     MyCarMV5.prototype.isOpen = function (value) {
         console.log(this.fuel);
         return this.open ? "open" : "close ".concat(value);
     };
+    __decorate([
+        logOnSet
+    ], MyCarMV5.prototype, "weight");
     __decorate([
         checkNumberOfSeatsV5(5)
     ], MyCarMV5.prototype, "freeSeats");
@@ -42,6 +65,22 @@ var MyCarMV5 = /** @class */ (function () {
     ], MyCarMV5);
     return MyCarMV5;
 }());
+function logOnSet(target, context) {
+    return function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        console.log("\u0418\u0437\u043C\u0435\u043D\u044F\u0435\u043C \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 \u043D\u0430 ".concat(__spreadArray([], args, true)));
+        return target.apply(this, args);
+    };
+}
+function logOnGet(target, context) {
+    return function () {
+        console.log("test");
+        return target.apply(this);
+    };
+}
 function checkNumberOfSeatsV5(limit) {
     return function (target, context) {
         return function (newAmount) {

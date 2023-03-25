@@ -11,6 +11,17 @@ class MyCarMV5 implements ICarV5 {
   fuel: string = "50%";
   open: boolean = true;
   errors: any;
+  _weight: number = 1000;
+
+  @logOnSet
+  set weight(num: number) {
+    this._weight = this._weight + num;
+  }
+
+  @logOnGet
+  get weight() {
+    return this._weight;
+  }
 
   @checkNumberOfSeatsV5(5)
   freeSeats: number = 3;
@@ -20,6 +31,26 @@ class MyCarMV5 implements ICarV5 {
     console.log(this.fuel);
     return this.open ? "open" : `close ${value}`;
   }
+}
+
+function logOnSet<T, R>(
+  target: (this: T, value: number) => R,
+  context: ClassSetterDecoratorContext<T, number>
+) {
+  return function (this: T, ...args: any): R {
+    console.log(`Изменяем значение на ${[...args]}`);
+    return target.apply(this, args);
+  };
+}
+
+function logOnGet<T, R>(
+  target: (this: T) => R,
+  context: ClassGetterDecoratorContext<T, number>
+) {
+  return function (this: T): R {
+    console.log(`test`);
+    return target.apply(this);
+  };
 }
 
 function checkNumberOfSeatsV5(limit: number) {

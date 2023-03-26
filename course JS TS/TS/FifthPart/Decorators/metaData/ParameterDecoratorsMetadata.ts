@@ -1,57 +1,79 @@
-interface ICar {
+import "reflect-metadata";
+const limitMetadataKey = Symbol("limit");
+
+interface ICarD {
   fuel: string;
   open: boolean;
   freeSeats: number;
 }
 
-// @closeMCar
-@changeDoorStatusM(false)
-@changeAmountOfFueldM(95)
-class MyCarM implements ICar {
+@changeDoorStatusD(false)
+@changeAmountOfFueldD(95)
+class MyCarD implements ICarD {
   fuel: string = "50%";
   open: boolean = true;
   errors: any;
   _weight: number = 1000;
 
-  get weight() {
-    return this._weight;
-  }
-
-  @log
-  set weight(num: number) {
-    this._weight = this._weight + num;
-  }
-
-  @checkNumberOfSeatsM(4)
+  @checkNumberOfSeatsD(4)
   freeSeats: number;
 
-  @checkAmountOfFuelM
+  @checkAmountOfFuelD
   isOpen(value: string) {
     console.log(this.fuel);
     return this.open ? "open" : `close ${value}`;
   }
+
+  @validate
+  startTravel(@limit passengers: number) {
+    console.log(`Started with ${passengers} passengers`);
+  }
 }
 
-function log(
+function limit(
   target: Object,
-  propertyKey: string | Symbol,
+  propertyKey: string | symbol,
+  parametrIndex: number
+) {
+  // console.log(Reflect.getOwnMetadata("design:type", target, propertyKey));
+  // console.log(Reflect.getOwnMetadata("design:paramtypes", target, propertyKey));
+  // console.log(Reflect.getOwnMetadata("design:returntype", target, propertyKey));
+  let limitedParametrs: number[] =
+    Reflect.getOwnMetadata(limitMetadataKey, target, propertyKey) || [];
+  limitedParametrs.push(parametrIndex);
+  Reflect.defineMetadata(
+    limitMetadataKey,
+    limitedParametrs,
+    target,
+    propertyKey
+  );
+}
+
+function validate(
+  target: Object,
+  propertyKey: string | symbol,
   descriptor: PropertyDescriptor
 ) {
-  const oldValue = descriptor.set;
-  const oldGetValue = descriptor.get;
+  let method = descriptor.value;
+  descriptor.value = function (...args: any) {
+    let limitedParametrs: number[] = Reflect.getOwnMetadata(
+      limitMetadataKey,
+      target,
+      propertyKey
+    );
 
-  descriptor.set = function (this: any, ...args: any) {
-    console.log(`Изменяем значение на ${[...args]}`);
-    return oldValue?.apply(this, args);
-  };
-
-  descriptor.get = function () {
-    console.log(`test`);
-    return oldGetValue?.apply(this);
+    if (limitedParametrs) {
+      for (let index of limitedParametrs) {
+        if (args[index] > 4) {
+          throw new Error(`Нельзя больше 4х пассажиров`);
+        }
+      }
+    }
+    return method?.apply(this, args);
   };
 }
 
-function checkNumberOfSeatsM(limit: number) {
+function checkNumberOfSeatsD(limit: number) {
   return function (target: Object, propertyKey: string | symbol) {
     let value: number;
     let symbol = Symbol();
@@ -79,7 +101,7 @@ function checkNumberOfSeatsM(limit: number) {
   };
 }
 
-function checkAmountOfFuelM(
+function checkAmountOfFuelD(
   target: Object,
   propertyKey: string | Symbol,
   descriptor: PropertyDescriptor
@@ -97,7 +119,7 @@ function checkAmountOfFuelM(
 }
 
 // ts version 5
-function changeDoorStatusM(status: boolean) {
+function changeDoorStatusD(status: boolean) {
   return <T extends { new (...args: any[]): {} }>(
     target: T
     // context: ClassDecoratorContext<T>
@@ -109,7 +131,7 @@ function changeDoorStatusM(status: boolean) {
 }
 
 // ts version 5
-function changeAmountOfFueldM(amount: number) {
+function changeAmountOfFueldD(amount: number) {
   return <T extends { new (...args: any[]): {} }>(
     target: T
     // context: ClassDecoratorContext<T>
@@ -120,12 +142,6 @@ function changeAmountOfFueldM(amount: number) {
   };
 }
 
-const carM = new MyCarM();
-carM.weight = 3;
-console.log(carM.weight);
-
-// carM.freeSeats = 3;
-// console.log(carM);
-// console.log(carM.errors);
-
-// console.log(carM.isOpen("checked"));
+const carD = new MyCarD();
+carD.startTravel(3);
+console.log(carD);

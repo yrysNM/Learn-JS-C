@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 interface ICuboid {
   width: number;
   length: number;
@@ -27,6 +29,9 @@ class ShippingContainer implements ICuboid {
     this.width = width;
     this.length = length;
     this.height = height;
+    validate(this, "width", width);
+    validate(this, "length", length);
+    validate(this, "height", height);
   }
 
   @fixLastCalculation("calcArea")
@@ -51,81 +56,56 @@ function createdAt<T extends { new (...args: any[]): {} }>(constructor: T) {
 
 function IsInt() {
   return function (target: Object, propertyKey: string | symbol) {
-    let symbol = Symbol();
-
-    const getter = function (this: any) {
-      return this[symbol];
-    };
-
-    const setter = function (this: any, newAmount: unknown) {
-      if (typeof newAmount === "number" && Number.isInteger(newAmount)) {
-        this[symbol] = newAmount;
-      } else {
-        throw new Error("Получено значение, которое не является целым числом");
-      }
-    };
-
-    Object.defineProperty(target, propertyKey, {
-      get: getter,
-      set: setter,
-      enumerable: true,
-      configurable: true,
-    });
+    Reflect.defineMetadata("IsInt", true, target, propertyKey);
   };
 }
 
 function Min(limit: number) {
   return function (target: Object, propertyKey: string | symbol) {
-    let symbol = Symbol();
-
-    const getter = function (this: any) {
-      return this[symbol];
-    };
-
-    const setter = function (this: any, newAmount: number) {
-      if (newAmount > limit) {
-        this[symbol] = newAmount;
-      } else {
-        throw new Error(
-          "Получено значение, которое меньше минимально допустимого"
-        );
-      }
-    };
-
-    Object.defineProperty(target, propertyKey, {
-      get: getter,
-      set: setter,
-      enumerable: true,
-      configurable: true,
-    });
+    Reflect.defineMetadata("Min", limit, target, propertyKey);
   };
 }
 
 function Max(limit: number) {
   return function (target: Object, propertyKey: string | symbol) {
-    let symbol = Symbol();
-
-    const getter = function (this: any) {
-      return this[symbol];
-    };
-
-    const setter = function (this: any, newAmount: number) {
-      if (newAmount < limit) {
-        this[symbol] = newAmount;
-      } else {
-        throw new Error(
-          "Получено значение, которое больше масимального значения"
-        );
-      }
-    };
-
-    Object.defineProperty(target, propertyKey, {
-      get: getter,
-      set: setter,
-      enumerable: true,
-      configurable: true,
-    });
+    Reflect.defineMetadata("Max", limit, target, propertyKey);
   };
+}
+
+function validate(target: any, propertyKey: string, value: any): boolean {
+  if (
+    Reflect.getMetadata("IsInt", target, propertyKey) &&
+    (!Number.isInteger(value) || value !== parseInt(value))
+  ) {
+    throw new Error(`свойство ${propertyKey} не целое цисло`);
+  }
+
+  if (
+    Reflect.hasMetadata("Min", target, propertyKey) &&
+    value < Reflect.getMetadata("Min", target, propertyKey)
+  ) {
+    throw new Error(
+      `мин значение для свойство ${propertyKey} должно быть: ${Reflect.getMetadata(
+        "Min",
+        target,
+        propertyKey
+      )}`
+    );
+  }
+
+  if (
+    Reflect.hasMetadata("Max", target, propertyKey) &&
+    value > Reflect.getMetadata("Max", target, propertyKey)
+  ) {
+    throw new Error(
+      `макс значение для свойство ${propertyKey} должно быть: ${Reflect.getMetadata(
+        "Max",
+        target,
+        propertyKey
+      )}`
+    );
+  }
+  return true;
 }
 
 // 2. Необходимо создать декораторы IsInt, Min и Max, которые будут валидировать свойства класса
@@ -152,11 +132,21 @@ function fixLastCalculation(method: string) {
 // Как значение записывать в него строку "Последний подсчет ${method} был ${Дата}",
 // Где method - это название подсчета, который передается при вызове декоратора (площадь или объем)
 
-const container = new ShippingContainer(10, 100, 10);
-container.width = 0;
+const container = new ShippingContainer(10, 100, 7);
+container.width = 10;
 container.height = 5;
 console.log(container.calcVolume());
 console.log(container.lastCalculation);
 
 console.log(container.calcArea());
 console.log(container.lastCalculation);
+
+finalValidate(container);
+
+function finalValidate(obj: unknown) {
+  if (obj && typeof obj === "object" && !Array.isArray(obj)) {
+    for (let k in obj) {
+      validate(obj, k, obj[k as keyof typeof obj]);
+    }
+  }
+}

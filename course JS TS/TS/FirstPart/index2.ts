@@ -84,7 +84,7 @@ type Role = {
   role: string;
 };
 
-type ConfigWithRole = Config & Role;
+type ConfigWithRole = Config  Role;
 
 const serverConfig: ConfigWithRole = {
   protocol: "https",

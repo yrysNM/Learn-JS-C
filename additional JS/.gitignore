@@ -29,3 +29,4 @@ yarn-error.log*
 .jshintrc
 
 package-lock.json
+filterTestData.ts

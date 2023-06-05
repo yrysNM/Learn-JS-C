@@ -1,5 +1,5 @@
 //Time Complexity: O(n)
-function isPrime(n: number): boolean {
+export function isPrime(n: number): boolean {
   if (n <= 1) {
     return false;
   }

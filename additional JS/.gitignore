@@ -28,5 +28,6 @@ yarn-error.log*
 
 .jshintrc
 
+filterTestData.js
+testData.js
 package-lock.json
-filterTestData.ts

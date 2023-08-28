@@ -69,6 +69,7 @@ class RearFacingSeat extends CarOptions {
 
 let myTesla = new ModelS();
 myTesla = new RearFacingSeat(myTesla);
+myTesla = new EnhancedAutoPilot(myTesla);
 
 console.log(myTesla.cost());
 console.log(myTesla.getDescription());

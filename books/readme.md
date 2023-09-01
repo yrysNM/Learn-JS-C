@@ -1,6 +1,6 @@
 ## Study JS and tasks projects basics of algorithms 📕
 
-### from book JavaScript: The Definitive Guide SEVENTH EDITION 🦏
+### The Definitive Guide SEVENTH EDITION 🦏
 
 ### JavaScript Data Structures and Algorithms(in file:algorithms & data structurs) 🐱‍💻
 

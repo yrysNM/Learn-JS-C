@@ -1,4 +1,4 @@
-class Circle2 {
+export class Circle2 {
   private _radius: number;
   constructor(radius: number = 1.0) {
     this._radius = radius;

@@ -1,7 +1,8 @@
 import { Circle } from "./1.1Circle";
 import { Circle2 } from "./1.2AnotherCircleClass";
 import { Rectangle } from "./1.3Rectangle";
-import { Employee } from "./1.3Employee";
+import { Employee } from "./1.4Employee";
+import { InvoiceItem } from "./1.5.InvoiceItem";
 
 function main() {
   const c1 = new Circle();
@@ -57,6 +58,22 @@ function main() {
 
   console.log(e1.raiseSalary(10));
   console.log(e1);
+
+  console.log("------------------Invoice--------------------------");
+  const inv1 = new InvoiceItem("A101", "Pen Red", 888, 0.08);
+  console.log(inv1);
+
+  inv1.qty = 999; 
+  inv1.unitPrice = 0.99; 
+  console.log(inv1);
+
+
+  console.log("id is: " + inv1.id);
+  console.log("desc is: " + inv1.desc);
+  console.log("qty is: " + inv1.qty);
+  console.log("unitPrice is: " + inv1.unitPrice);
+
+  console.log('total is: ', inv1.total);
 }
 
 main();

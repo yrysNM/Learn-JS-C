@@ -37,6 +37,8 @@ function main() {
 
   console.log("area is: ", r1.getArea());
   console.log("perimeter is: ", r1.getPerimeter());
+  console.log("diagonal is: ", r1.getDiogonal());
+  console.log('rotation is:', r1.getRotation() );
 
   console.log("---------------------Employee-------------------");
   const e1 = new Employee(8, "Peter", "Tan", 2500);

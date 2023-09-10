@@ -48,15 +48,14 @@ export class Employee {
   }
 
   /**
-   * @TODO finish method
+   * 
    * @param precent
    * @returns
    */
   public raiseSalary(precent: number): number {
-    let newSalary = this._salary * (precent / 100);
-    this._salary = newSalary;
-    return newSalary;
-  }
+     this._salary = ((this._salary * (precent / 100)) + this._salary) | 0;
+     return this._salary;
+    }
 
   public toString() {
     return `Employee(id=${this._id},name=${this.firstName},${this.lastName},salary=${this._salary})`;

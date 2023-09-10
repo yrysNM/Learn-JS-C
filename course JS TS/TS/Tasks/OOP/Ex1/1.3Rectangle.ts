@@ -27,6 +27,14 @@ export class Rectangle {
     return this._length * this._width;
   }
 
+  public getDiogonal(): number {
+    return Math.sqrt(this._length ** 2 + this._width ** 2);
+  }
+
+  public getRotation(): number {
+    return this.getArea() * 2 / this.getDiogonal() ** 2;
+  } 
+
   public getPerimeter(): number {
     return (this._length + this._width) * 2;
   }

@@ -2,8 +2,9 @@ import { Circle } from "./1.1Circle";
 import { Circle2 } from "./1.2AnotherCircleClass";
 import { Rectangle } from "./1.3Rectangle";
 import { Employee } from "./1.4Employee";
-import { InvoiceItem } from "./1.5.InvoiceItem";
-import { Account } from "./1.6.Account";
+import { InvoiceItem } from "./1.5InvoiceItem";
+import { Account } from "./1.6Account";
+import { DateClass } from "./1.7Date";
 
 function main() {
   const c1 = new Circle();
@@ -96,6 +97,21 @@ function main() {
   a1.transferTo(a2, 100);
   console.log(a1);
   console.log(a2);
+
+  console.log("------------------Date--------------------------");
+  const d1 = new DateClass(1, 2, 2014);
+  console.log(d1.toString());
+  d1.month = 12;
+  d1.day = 9;
+  d1.year = 2099;
+  console.log(d1.toString());
+
+  console.log("Month: " + d1.month);
+  console.log("Day: " + d1.day);
+  console.log("Year: " + d1.year);
+
+  d1.setDate(3, 4, 2016);
+  console.log(d1.toString());
 }
 
 main();

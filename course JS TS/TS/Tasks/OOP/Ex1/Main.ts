@@ -3,6 +3,7 @@ import { Circle2 } from "./1.2AnotherCircleClass";
 import { Rectangle } from "./1.3Rectangle";
 import { Employee } from "./1.4Employee";
 import { InvoiceItem } from "./1.5.InvoiceItem";
+import { Account } from "./1.6.Account";
 
 function main() {
   const c1 = new Circle();
@@ -39,7 +40,7 @@ function main() {
   console.log("area is: ", r1.getArea());
   console.log("perimeter is: ", r1.getPerimeter());
   console.log("diagonal is: ", r1.getDiogonal());
-  console.log('rotation is:', r1.getRotation() );
+  console.log("rotation is:", r1.getRotation());
 
   console.log("---------------------Employee-------------------");
   const e1 = new Employee(8, "Peter", "Tan", 2500);
@@ -63,17 +64,38 @@ function main() {
   const inv1 = new InvoiceItem("A101", "Pen Red", 888, 0.08);
   console.log(inv1);
 
-  inv1.qty = 999; 
-  inv1.unitPrice = 0.99; 
+  inv1.qty = 999;
+  inv1.unitPrice = 0.99;
   console.log(inv1);
-
 
   console.log("id is: " + inv1.id);
   console.log("desc is: " + inv1.desc);
   console.log("qty is: " + inv1.qty);
   console.log("unitPrice is: " + inv1.unitPrice);
 
-  console.log('total is: ', inv1.total);
+  console.log("total is: ", inv1.total);
+
+  console.log("------------------Account--------------------------");
+
+  const a1 = new Account("A101", "Tan Ah Teck", 88);
+  console.log(a1);
+  const a2 = new Account("A102", "Kumar");
+  console.log(a2);
+
+  console.log("ID: " + a1.id);
+  console.log("Name: " + a1.name);
+  console.log("Balance: " + a1.balance);
+
+  a1.credit(100);
+  console.log(a1);
+  a1.debit(50);
+  console.log(a1);
+  a1.debit(500);
+  console.log(a1);
+
+  a1.transferTo(a2, 100);
+  console.log(a1);
+  console.log(a2);
 }
 
 main();

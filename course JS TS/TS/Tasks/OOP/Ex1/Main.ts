@@ -5,6 +5,7 @@ import { Employee } from "./1.4Employee";
 import { InvoiceItem } from "./1.5InvoiceItem";
 import { Account } from "./1.6Account";
 import { DateClass } from "./1.7Date";
+import { Time } from "./1.8Time";
 
 function main() {
   const c1 = new Circle();
@@ -112,6 +113,29 @@ function main() {
 
   d1.setDate(3, 4, 2016);
   console.log(d1.toString());
+
+  console.log("------------------Time--------------------------");
+  const t1 = new Time(1, 2, 3);
+  console.log(t1.toString());
+
+  t1.hour = 4;
+  t1.minute = 5;
+  t1.secound = 6;
+
+  console.log(t1.toString());
+
+  console.log("Hour: " + t1.hour);
+  console.log("Minute: " + t1.minute);
+  console.log("Second: " + t1.secound);
+
+  t1.setTime(23, 59, 58);
+  console.log(t1.toString());
+
+  console.log(t1.nextSecond().toString());
+  console.log(t1.nextSecond().nextSecond().toString());
+
+  console.log(t1.previousSecond().toString());
+  console.log(t1.previousSecond().previousSecond().toString());
 }
 
 main();

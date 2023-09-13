@@ -1,5 +1,5 @@
 class Book {
-  constructor(title, pages, isbn) {
+  constructor(public title: string, public pages: string, public isbn: string) {
     this.title = title;
     this.pages = pages;
     this.isbn = isbn;
@@ -12,7 +12,12 @@ class Book {
 
 // inheritance
 class ITBook extends Book {
-  constructor(title, pages, isbn, technology) {
+  constructor(
+    public title: string,
+    public pages: string,
+    public isbn: string,
+    public technology: string
+  ) {
     super(title, pages, isbn);
     this.technology = technology;
   }

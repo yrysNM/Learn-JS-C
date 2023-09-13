@@ -1,3 +1,9 @@
+interface Array<T> {
+  insertFirstPosition(value: number): void;
+  reIndex(myArray: number[]): Array<T>;
+  removeFirstPosition(): Array<T>;
+}
+
 Array.prototype.insertFirstPosition = function (value) {
   for (let i = this.length; i >= 0; i--) {
     this[i] = this[i - 1];
@@ -6,7 +12,7 @@ Array.prototype.insertFirstPosition = function (value) {
 };
 
 Array.prototype.reIndex = function (myArray) {
-  const newArray = [];
+  const newArray: number[] = [];
   for (let i = 0; i < myArray.length; i++) {
     if (myArray[i] !== undefined) {
       console.log(myArray[i]);

@@ -2,11 +2,13 @@ export class Time {
   private _hour: number;
   private _minute: number;
   private _second: number;
+  private _date: Date;
 
   constructor(hour: number, minute: number, second: number) {
     this._hour = hour;
     this._minute = minute;
     this._second = second;
+    this._date = new Date(new Date().setHours(hour, minute, second));
   }
 
   public get hour() {
@@ -23,20 +25,26 @@ export class Time {
 
   public set hour(hour: number) {
     this._hour = hour;
+    this._date.setHours(hour);
   }
 
   public set minute(minute: number) {
     this._minute = minute;
+    this._date.setMinutes(minute);
   }
 
   public set secound(second: number) {
     this._second = second;
+    this._date.setSeconds(second);
   }
 
   public setTime(hour: number, minute: number, second: number) {
     this._hour = hour;
     this._minute = minute;
     this._second = second;
+    this._date.setHours(hour);
+    this._date.setMinutes(minute);
+    this._date.setSeconds(second);
   }
 
   public toString() {
@@ -55,17 +63,23 @@ export class Time {
     return `${hourTime}:${minuteTime}:${secondTime}`;
   }
 
-  /**
-   * @FIX fix error time for 23:59:60 + 1 => 61 with new Date getHour etc
-   * @returns time
-   */
   public nextSecond(): Time {
-    this._second += 1;
+    this._date.setSeconds(this._date.getSeconds() + 1);
+
+    this._second = this._date.getSeconds();
+    this._hour = this._date.getHours();
+    this._minute = this._date.getMinutes();
+
     return this;
   }
 
   public previousSecond(): Time {
-    this._second -= 1;
+    this._date.setSeconds(this._date.getSeconds() - 1);
+
+    this._second = this._date.getSeconds();
+    this._hour = this._date.getHours();
+    this._minute = this._date.getMinutes();
+
     return this;
   }
 }

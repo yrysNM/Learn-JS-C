@@ -6,6 +6,7 @@ import { InvoiceItem } from "./1.5InvoiceItem";
 import { Account } from "./1.6Account";
 import { DateClass } from "./1.7Date";
 import { Time } from "./1.8Time";
+import { Ball } from "./1.9Ball";
 
 function main() {
   const c1 = new Circle();
@@ -136,6 +137,43 @@ function main() {
 
   console.log(t1.previousSecond().toString());
   console.log(t1.previousSecond().previousSecond().toString());
+
+  console.log("------------------Ball--------------------------");
+  const ball = new Ball(1.1, 2.2, 10, 3.3, 4.4);
+  console.log(ball.toString());
+  ball.setX(80.0);
+  ball.setY(35.0);
+  ball.setRadius(5);
+  ball.setXDelta(4.0);
+  ball.setYDelta(6.0);
+
+  console.log("x is: " + ball.getX());
+  console.log("y is: " + ball.getY());
+  console.log("radius is: " + ball.getRadius());
+  console.log("xDelta is: " + ball.getXDelta());
+  console.log("yDelta is: " + ball.getYDelta());
+
+  let xMin = 0.0;
+  let xMax = 100.0;
+  let yMin = 0.0;
+  let yMax = 50.0;
+
+  for (let i = 0; i < 15; i++) {
+    ball.move();
+    console.log(ball.toString());
+    const xNew = ball.getX();
+    const yNew = ball.getY();
+    let radius = ball.getRadius();
+
+    if ((xNew + radius) > xMax || (xNew - radius) < xMin) {
+      ball.reflectHorizontal();
+    }
+
+    if ((yNew + radius) > yMax || (yNew - radius) < yMin) {
+      ball.reflectVertical();
+    }
+  }
+
 }
 
 main();

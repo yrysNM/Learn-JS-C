@@ -1,9 +1,9 @@
-#include <iostream>
+﻿#include <iostream>
 #include "LinkedList.cpp";
 
 using namespace std;
 
-int main()
+int runLinkedList()
 {
 	Node* head; 
 	Node* one = NULL; 

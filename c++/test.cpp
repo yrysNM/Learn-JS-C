@@ -75,8 +75,50 @@ void testFraqment()
     }
 }
 
+static int a = 0;
+
+void func(int a)
+{
+    // f(a);
+    /**
+     * ERROR: ‘f’ was not declared in this scope
+     * In function ‘void func(int)’:
+     *   82 |     f(a);
+     */
+}
+
+void f(int a)
+{
+    cout << a;
+}
+
 int main()
 {
+
+    int a1 = 5;
+    int b = 0;
+    int r = a1;
+    r = b++;
+    cout << a1 << endl; // 5
+    cout << b << endl;  // 1
+    cout << r << endl;  // 0
+
+    cout << "-------------------" << endl;
+    int a2 = 5;
+    int b2 = 0;
+    int *r2 = &a2;
+    // *r2 = b2++; // post-increment
+    // cout << a2 << endl;  // 0
+    // cout << b2 << endl;  // 1
+    // cout << *r2 << endl; // 0
+
+    cout << "-------------------" << endl;
+    *r2 = ++b2;          // pre-increment
+    cout << a2 << endl;  // 1
+    cout << b2 << endl;  // 1
+    cout << *r2 << endl; // 1
+
+    func(a);
     testFraqment();
     int a[10], n;
     for (int i = 0; i <= n; ++i)
@@ -99,5 +141,6 @@ int main()
     test3();
     cout << "\n"
          << test4(3, 8);
+
     return 0;
 }

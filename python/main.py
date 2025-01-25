@@ -62,4 +62,13 @@ print(sum_complex.real)
 
 print([1, 2, 4] == [1, 2, 3])
 
-print({"a": 5, "b": 5} > {"a": 5, "b": 4})
+print({"a": 5, "b": 3} == {"a": 5, "b": 4})
+
+int_num = 5
+float_num = 3.3
+
+print(int_num + float_num)
+print(float_num - int_num)
+
+print(int_num.__add__(float_num))
+print(float_num.__radd__(int_num))

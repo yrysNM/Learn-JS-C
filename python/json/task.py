@@ -6,4 +6,3 @@ dict_info = {
 }
 
 print(json.dumps(dict_info, indent=1))
-5

@@ -11,8 +11,8 @@ def rm_directory_and_files(path: Path):
     path.rmdir()
 
 
-def ReadFiles(path):
-    with open(f"{curr_path}/{path}") as txt_file:
+def read_file(path):
+    with open(path) as txt_file:
         while True:
             line = txt_file.readline()
             if not line:
@@ -20,23 +20,22 @@ def ReadFiles(path):
             print(line)
 
 
-curr_path = "./python/folder_files"
-dir_files = Path(f"{curr_path}/files")
+dir_files = Path(f"files")
+dir_files.mkdir(exist_ok=True)
 
-if dir_files.exists():
-    rm_directory_and_files(dir_files)
-
-dir_files.mkdir()
+first_file = Path(dir_files / "first.txt")
+second_file = Path(dir_files / "second.txt")
 
 
-with open(f"{curr_path}/files/first.txt", 'w') as first_file:
-    first_file.write("Hello world\n")
-    first_file.write("Hi\n")
+with open(first_file, 'w') as f:
+    f.write("Hello world\n")
+    f.write("Hi\n")
 
-with open(f"{curr_path}/files/second.txt", "w") as second_file:
-    second_file.write("Rise to mountain\n")
-    second_file.write("Go to first line")
+with open(second_file, "w") as f:
+    f.write("Rise to mountain\n")
+    f.write("Go to first line")
 
 
-ReadFiles("files/first.txt")
-ReadFiles("files/second.txt")
+read_file(first_file)
+read_file(second_file)
+rm_directory_and_files(dir_files)

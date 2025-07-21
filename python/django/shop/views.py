@@ -8,4 +8,6 @@ def index(request):
     courses = Course.objects.all()
     # return HttpResponse(','.join([course.title for course in courses]))
     # return HttpResponse(''.join([str(course.title) + '<br />' for course in courses]))
-    return HttpResponse(courses)
+    # return HttpResponse(courses)
+    courses = Course.objects.all()
+    return render(request, 'courses.html', {'courses': courses});

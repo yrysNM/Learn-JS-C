@@ -9,22 +9,25 @@
     <table border="1">
       <thead>
         <tr>
-          <th>Column 1</th>
-          <th>Column 2</th>
-          <th>Column 3</th>
-          <th>Column 4</th>
-          <th>Column 5</th>
+          <th>Title</th>
+          <th>price</th>
+          <th>student qty</th>
+          <th>reviews qty</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {% for course in courses %}
         <tr>
           <td>{{course.title}}</td>
-          <td>{{}}</td>
-          <td>Row 1, Col 3</td>
-          <td>Row 1, Col 4</td>
-          <td>Row 1, Col 5</td>
+          <td>{{course.price}}</td>
+          <td>{{course.students_qty}}</td>
+          <td>{{course.reviews_qty}}</td>
+          <td>
+            <button>buy</button>
+          </td>
         </tr>
+        {%endfor %}
       </tbody>
     </table>
   </body>

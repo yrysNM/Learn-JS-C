@@ -1,34 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shop</title>
-  </head>
-  <body>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>price</th>
-          <th>student qty</th>
-          <th>reviews qty</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for course in courses %}
-        <tr>
-          <td>{{course.title}}</td>
-          <td>{{course.price}}</td>
-          <td>{{course.students_qty}}</td>
-          <td>{{course.reviews_qty}}</td>
-          <td>
-            <button>buy</button>
-          </td>
-        </tr>
-        {%endfor %}
-      </tbody>
-    </table>
-  </body>
-</html>
+{% extends "base.html" %} 
+{% block title %}All Courses{% endblock %}
+{% block content %}
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Title</th>
+        <th scope="col" class="px-6 py-3">Price</th>
+        <th scope="col" class="px-6 py-3">Students qty</th>
+        <th scope="col" class="px-6 py-3">Reviews qty</th>
+        <th scope="col" class="px-6 py-3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          {{course.title}}
+        </th>
+        <td class="px-6 py-4">{{course.price}}</td>
+        <td class="px-6 py-4">{{course.students_qty}}</td>
+        <td class="px-6 py-4">{{course.reviews_qty}}</td>
+        <td class="px-6 py-4">
+          <a
+            href="#"
+            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            >Buy</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

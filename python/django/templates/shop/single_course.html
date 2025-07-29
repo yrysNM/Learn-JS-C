@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block title %}{{course.title}}{% endblock %}
+
+{% block content %}
+<div
+  class="max-w-xl mx-auto bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 mt-8"
+>
+  <img
+    class="w-full h-64 object-cover rounded-t-lg"
+    src="https://i.pinimg.com/736x/fe/83/0a/fe830a90e45e17fb5143ac99dcf21eab.jpg"
+    alt="Course image"
+  />
+  <div class="p-6">
+    <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-2">
+      {{ course.title }}
+    </h1>
+    <div class="flex flex-wrap gap-4 mb-4">
+      <span
+        class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"
+        >${{ course.price }}</span
+      >
+    </div>
+    <div class="flex items-center gap-6 mb-4">
+      <div class="flex items-center gap-1 text-gray-700 dark:text-gray-300">
+        <svg
+          class="w-5 h-5 text-yellow-400"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"
+          />
+        </svg>
+        <span>{{ course.reviews_qty }} Reviews</span>
+      </div>
+      <div class="flex items-center gap-1 text-gray-700 dark:text-gray-300">
+        <svg
+          class="w-5 h-5 text-blue-500"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 2a6 6 0 016 6v1.586l.707.707A1 1 0 0117 12H3a1 1 0 01-.707-1.707L3 9.586V8a6 6 0 016-6zm-2 14a2 2 0 104 0H8z"
+          />
+        </svg>
+        <span>{{ course.students_qty }} Students</span>
+      </div>
+    </div>
+    <div class="mb-4 text-gray-600 dark:text-gray-400">
+      <span class="font-medium">Created at:</span> {{ course.created_at }}
+    </div>
+    <a
+      href="#"
+      class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition"
+    >
+      Buy Now
+      <svg
+        class="w-4 h-4 ml-2"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17 8l4 4m0 0l-4 4m4-4H3"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
+
+{% endblock content %}

@@ -18,6 +18,8 @@ class Course(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
 
+    # def hyd
+
     def __str__(self):
         return self.title;
   
